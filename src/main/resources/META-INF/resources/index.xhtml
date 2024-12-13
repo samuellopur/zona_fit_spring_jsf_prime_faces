@@ -7,6 +7,17 @@
         <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
     </h:head>
     <h:body>
+        <div class="card">
+            <h:form id="forma-clientes">
+                <p:growl id="mensajes" showDetails="true"/>
+                <div class="card">
+                    <p:menubar>
+                        <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
+                                    actionListener="#{indexControlador.cargarDatos}"/>
+                    </p:menubar>
+                </div>
+            </h:form>
+        </div>
         <div class="flex justify-content-center flex-wrap card-container yellow-container">
             <div class="flex align-items-center justify-content-center w-20rem h-4rem bg-yellow-500 font-bold text-gray-900
                         border-round m-2">
