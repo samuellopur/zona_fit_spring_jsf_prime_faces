@@ -15,6 +15,10 @@
                         <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
                                     update="forma-clientes:clientes-tabla"
                                     actionListener="#{indexControlador.cargarDatos}"/>
+                        <p:menuitem value="Nuevo Cliente" icon="pi pi-fw pi-plus"
+                                    actionListener="#{indexControlador.agregarCliente}"
+                                    update="forma-modal:cliente-ventana"
+                                    oncomplete="PF('ventanaModalCliente').show()"/>
                     </p:menubar>
                 </div>
 
@@ -23,8 +27,8 @@
                                  widgetVar="clientesTabla">
                         <f:facet name="header">
                             <div class="flex justify-content-center flex-wrap card-container yellow-container">
-                                <div class="flex align-items-center justify-content-center w-20rem h-4rem bg-yellow-500 font-bold text-gray-900
-                                        border-round m-2">
+                                <div class="flex align-items-center justify-content-center w-20rem h-4rem bg-yellow-500 font-bold
+                                text-gray-900 border-round m-2">
                                     <h3>Zona Fit (GYM)</h3>
                                 </div>
                             </div>
@@ -45,8 +49,40 @@
                     </p:dataTable>
                 </div>
             </h:form>
+            <h:form id="forma-modal">
+                <p:dialog header="Detalles cliente" showEffect="fade"
+                          modal="true" widgetVar="ventanaModalCliente"
+                          responsive="true">
+                    <p:outputPanel id="cliente-ventana" class="ui-fluid">
+                        <div class="field">
+                            <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                            <p:inputText id="nombre"
+                                         value="#{indexControlador.clienteSeleccionado.nombre}"
+                                         required="true"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="apellido">Apellido</p:outputLabel>
+                            <p:inputText id="apellido"
+                                         value="#{indexControlador.clienteSeleccionado.apellido}"
+                                         required="true"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="membresia">Membresia</p:outputLabel>
+                            <p:inputNumber id="membresia"
+                                         value="#{indexControlador.clienteSeleccionado.membresia}"
+                                         required="true"/>
+                        </div>
+                    </p:outputPanel>
+                    <f:facet name="footer">
+                        <p:commandButton value="Guardar" icon="pi pi-check"
+                                         process="cliente-ventana @this"
+                                         actionListener="#{indexControlador.guardarCliente}"/>
+                        <p:commandButton value="Cancelar" icon="pi pi-times"
+                                         onclick="PF('ventanaModalCliente').hide()"
+                                         class="ui-botton-secundary" type="button"/>
+                    </f:facet>
+                </p:dialog>
+            </h:form>
         </div>
-
-
     </h:body>
 </h:html>
