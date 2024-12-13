@@ -13,18 +13,40 @@
                 <div class="card">
                     <p:menubar>
                         <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
+                                    update="forma-clientes:clientes-tabla"
                                     actionListener="#{indexControlador.cargarDatos}"/>
                     </p:menubar>
                 </div>
+
+                <div class="card">
+                    <p:dataTable value="#{indexControlador.clientes}" var="cliente" id="clientes-tabla"
+                                 widgetVar="clientesTabla">
+                        <f:facet name="header">
+                            <div class="flex justify-content-center flex-wrap card-container yellow-container">
+                                <div class="flex align-items-center justify-content-center w-20rem h-4rem bg-yellow-500 font-bold text-gray-900
+                                        border-round m-2">
+                                    <h3>Zona Fit (GYM)</h3>
+                                </div>
+                            </div>
+                        </f:facet>
+
+                        <p:column headerText="Id">
+                            <h:outputText value="#{cliente.id}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{cliente.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <h:outputText value="#{cliente.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Membresia">
+                            <h:outputText value="#{cliente.membresia}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
             </h:form>
         </div>
-        <div class="flex justify-content-center flex-wrap card-container yellow-container">
-            <div class="flex align-items-center justify-content-center w-20rem h-4rem bg-yellow-500 font-bold text-gray-900
-                        border-round m-2">
-                <h3>Zona Fit (GYM)</h3>
-            </div>
 
-        </div>
 
     </h:body>
 </h:html>
